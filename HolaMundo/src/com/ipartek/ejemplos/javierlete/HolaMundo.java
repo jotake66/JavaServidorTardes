@@ -36,7 +36,7 @@ public class HolaMundo extends HttpServlet {
 
 		UsuariosDAL usuariosDAL = new UsuariosDALFijo();
 
-		usuariosDAL.alta(new Usuario("javierlete", "SuperS3creta"));
+		usuariosDAL.alta(new Usuario("javi", "Lete"));
 
 		if (usuariosDAL.validar(usuario))
 			out.println("Bienvenido");
