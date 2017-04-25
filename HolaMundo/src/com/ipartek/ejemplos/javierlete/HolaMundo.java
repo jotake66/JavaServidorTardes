@@ -16,7 +16,10 @@ public class HolaMundo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		out.println("Hola");
+
+		String nombre = request.getParameter("nombre");
+
+		out.println("Hola " + nombre);
 		out.println(new java.util.Date());
 	}
 
