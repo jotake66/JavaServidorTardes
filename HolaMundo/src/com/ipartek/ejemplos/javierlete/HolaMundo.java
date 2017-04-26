@@ -22,6 +22,10 @@ public class HolaMundo extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UsuariosDAL usuariosDAL = new UsuariosDALFijo();
+
+		usuariosDAL.alta(new Usuario("javi", "Lete"));
+
 		request.setCharacterEncoding("UTF-8");
 
 		response.setContentType("text/plain");
@@ -33,10 +37,6 @@ public class HolaMundo extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		Usuario usuario = new Usuario(nombre, pass);
-
-		UsuariosDAL usuariosDAL = new UsuariosDALFijo();
-
-		usuariosDAL.alta(new Usuario("javi", "Lete"));
 
 		if (usuariosDAL.validar(usuario))
 			out.println("Bienvenido");
