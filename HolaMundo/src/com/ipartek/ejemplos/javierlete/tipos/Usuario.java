@@ -40,6 +40,10 @@ public class Usuario {
 		this.pass = pass;
 	}
 
+	public Usuario() {
+		this("anonimo", "passanonimo");
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", pass=" + pass + "]";
