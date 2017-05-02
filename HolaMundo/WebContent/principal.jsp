@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>Principal</h1>
-	<h2>Bienvenido</h2>
+	<jsp:useBean id="usuario" scope="session" 
+		class="com.ipartek.ejemplos.javierlete.tipos.Usuario" />
+	<h2>Bienvenido ${usuario.nombre}</h2>
 </body>
 </html>

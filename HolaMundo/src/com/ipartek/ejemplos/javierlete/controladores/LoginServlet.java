@@ -40,9 +40,10 @@ public class LoginServlet extends HttpServlet {
 		boolean esValido = usuarioDAL.validar(usuario);
 
 		// Redirigir a una nueva vista
-		if (esValido)
+		if (esValido) {
+			request.getSession().setAttribute("usuario", usuario);
 			response.sendRedirect("principal.jsp");
-		else
+		} else
 			response.sendRedirect("error.jsp");
 	}
 }
