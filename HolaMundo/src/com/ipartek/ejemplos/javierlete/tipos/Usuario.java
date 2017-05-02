@@ -1,7 +1,7 @@
 package com.ipartek.ejemplos.javierlete.tipos;
 
 public class Usuario {
-	private String nombre, pass;
+	private String nombre, pass, errores;
 
 	@Override
 	public int hashCode() {
@@ -63,5 +63,13 @@ public class Usuario {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+
+	public String getErrores() {
+		return errores;
+	}
+
+	public void setErrores(String errores) {
+		this.errores = errores;
 	}
 }
