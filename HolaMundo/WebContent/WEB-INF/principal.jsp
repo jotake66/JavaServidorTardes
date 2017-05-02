@@ -11,5 +11,6 @@
 	<jsp:useBean id="usuario" scope="session" 
 		class="com.ipartek.ejemplos.javierlete.tipos.Usuario" />
 	<h2>Bienvenido ${usuario.nombre}</h2>
+	<h3><%= new java.util.Date() %></h3>
 </body>
 </html>

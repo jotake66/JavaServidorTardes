@@ -42,7 +42,8 @@ public class LoginServlet extends HttpServlet {
 		// Redirigir a una nueva vista
 		if (esValido) {
 			request.getSession().setAttribute("usuario", usuario);
-			response.sendRedirect("principal.jsp");
+			// response.sendRedirect("principal.jsp");
+			request.getRequestDispatcher("/WEB-INF/principal.jsp").forward(request, response);
 		} else {
 			usuario.setErrores("El usuario y contraseña introducidos no son válidos");
 			request.setAttribute("usuario", usuario);
