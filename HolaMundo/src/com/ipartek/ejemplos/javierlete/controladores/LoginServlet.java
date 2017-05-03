@@ -24,6 +24,8 @@ public class LoginServlet extends HttpServlet {
 
 	private static final int TIEMPO_INACTIVIDAD = 30 * 60;
 
+	private static final int MINIMO_CARACTERES = 4;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
@@ -70,6 +72,9 @@ public class LoginServlet extends HttpServlet {
 
 		boolean quiereSalir = "logout".equals(opcion);
 
+		boolean nombreValido = usuario.getNombre() != null && usuario.getNombre().length() >= MINIMO_CARACTERES;
+		boolean passValido = !(usuario.getPass() == null || usuario.getPass().length() < MINIMO_CARACTERES);
+
 		// Redirigir a una nueva vista
 		if (quiereSalir) {
 			session.invalidate();
@@ -77,6 +82,10 @@ public class LoginServlet extends HttpServlet {
 		} else if (esUsuarioYaRegistrado) {
 			request.getRequestDispatcher(RUTA_PRINCIPAL).forward(request, response);
 		} else if (sinParametros) {
+			request.getRequestDispatcher(RUTA_LOGIN).forward(request, response);
+		} else if (!nombreValido || !passValido) {
+			usuario.setErrores("El nombre y la pass deben tener como mínimo " + MINIMO_CARACTERES + " caracteres y son ambos requeridos");
+			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher(RUTA_LOGIN).forward(request, response);
 		} else if (esValido) {
 			session.setAttribute("usuario", usuario);
