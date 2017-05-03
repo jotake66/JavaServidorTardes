@@ -1,0 +1,71 @@
+package com.ipartek.ejemplos.javierlete.controladores;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ipartek.ejemplos.javierlete.dal.UsuariosDAL;
+import com.ipartek.ejemplos.javierlete.dal.UsuariosDALFijo;
+import com.ipartek.ejemplos.javierlete.tipos.Usuario;
+
+@WebServlet("/alta")
+public class AltaServlet extends HttpServlet {
+	/* package */static final String USUARIOS_DAL = "usuariosDAL";
+
+	private static final long serialVersionUID = 1L;
+
+	/* package */static final String RUTA_ALTA = LoginServlet.RUTA + "alta.jsp";
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nombre = request.getParameter("nombre");
+		String pass = request.getParameter("pass");
+		String pass2 = request.getParameter("pass2");
+
+		// Inicio sin datos: mostrar formulario
+		// Datos incorrectos: sin rellenar, límite de caracteres, no coinciden contraseñas
+		// Las contraseñas deben ser iguales
+		// Datos correctos: guardar
+
+		Usuario usuario = new Usuario(nombre, pass);
+
+		boolean hayDatos = nombre != null && pass != null && pass2 != null;
+		boolean datosCorrectos = validarCampo(nombre) && validarCampo(pass) && validarCampo(pass2);
+		boolean passIguales = pass != null && pass.equals(pass2);
+
+		if (hayDatos) {
+			if (!datosCorrectos) {
+				usuario.setErrores("Todos los campos son requeridos y con un mínimo de " + LoginServlet.MINIMO_CARACTERES + " caracteres");
+				request.setAttribute("usuario", usuario);
+			} else if (!passIguales) {
+				usuario.setErrores("Las contraseñas deben ser iguales");
+				request.setAttribute("usuario", usuario);
+			} else {
+				ServletContext application = request.getServletContext();
+
+				UsuariosDAL usuariosDAL = (UsuariosDAL) application.getAttribute(USUARIOS_DAL);
+
+				if (usuariosDAL == null) {
+					usuariosDAL = new UsuariosDALFijo();
+				}
+
+				usuariosDAL.alta(usuario);
+				application.setAttribute(USUARIOS_DAL, usuariosDAL);
+			}
+		}
+		request.getRequestDispatcher(RUTA_ALTA).forward(request, response);
+	}
+
+	private boolean validarCampo(String campo) {
+		return campo != null && campo.length() >= LoginServlet.MINIMO_CARACTERES;
+	}
+
+}

@@ -13,7 +13,7 @@ public class UsuariosDALFijo implements UsuariosDAL {
 
 	@Override
 	public boolean validar(Usuario usuario) {
-		return this.usuario.equals(usuario);
+		return this.usuario != null && this.usuario.equals(usuario);
 	}
 
 }

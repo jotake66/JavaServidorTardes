@@ -2,6 +2,7 @@ package com.ipartek.ejemplos.javierlete.controladores;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -18,13 +19,13 @@ import com.ipartek.ejemplos.javierlete.tipos.Usuario;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String RUTA = "/WEB-INF/vistas/";
+	/* package */static final String RUTA = "/WEB-INF/vistas/";
 	private static final String RUTA_PRINCIPAL = RUTA + "principal.jsp";
 	private static final String RUTA_LOGIN = RUTA + "login.jsp";
 
-	private static final int TIEMPO_INACTIVIDAD = 30 * 60;
+	public static final int TIEMPO_INACTIVIDAD = 30 * 60;
 
-	private static final int MINIMO_CARACTERES = 4;
+	/* package */static final int MINIMO_CARACTERES = 4;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -43,11 +44,17 @@ public class LoginServlet extends HttpServlet {
 		usuario.setPass(pass);
 
 		// Llamada a lógica de negocio
-		UsuariosDAL usuarioDAL = new UsuariosDALFijo();
+		ServletContext application = request.getServletContext();
+
+		UsuariosDAL usuariosDAL = (UsuariosDAL) application.getAttribute(AltaServlet.USUARIOS_DAL);
+
+		if (usuariosDAL == null) {
+			usuariosDAL = new UsuariosDALFijo();
+		}
 
 		// Sólo para crear una base de datos falsa con el
 		// contenido de un usuario "javi", "lete"
-		usuarioDAL.alta(new Usuario("javi", "lete"));
+		// usuarioDAL.alta(new Usuario("javi", "lete"));
 
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(TIEMPO_INACTIVIDAD);
@@ -64,7 +71,7 @@ public class LoginServlet extends HttpServlet {
 		// }
 
 		// ESTADOS
-		boolean esValido = usuarioDAL.validar(usuario);
+		boolean esValido = usuariosDAL.validar(usuario);
 
 		boolean sinParametros = usuario.getNombre() == null;
 
