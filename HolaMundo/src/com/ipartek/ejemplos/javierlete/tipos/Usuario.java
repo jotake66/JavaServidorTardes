@@ -41,7 +41,7 @@ public class Usuario {
 	}
 
 	public Usuario() {
-		this("anonimo", "passanonimo");
+		this("", "");
 	}
 
 	@Override

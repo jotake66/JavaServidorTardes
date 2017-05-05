@@ -2,7 +2,7 @@ package com.ipartek.ejemplos.javierlete.dal;
 
 import com.ipartek.ejemplos.javierlete.tipos.Usuario;
 
-public class UsuariosDALFijo implements UsuariosDAL {
+public class UsuariosDALUsuarioUnico implements UsuariosDAL {
 
 	private Usuario usuario;
 
