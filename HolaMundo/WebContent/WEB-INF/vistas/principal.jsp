@@ -1,6 +1,6 @@
 <%@ include file="includes/cabecera.jsp" %>
 
-	<h1>Principal</h1>
+	<h2>Principal</h2>
 	<jsp:useBean id="usuario" scope="session" 
 		class="com.ipartek.ejemplos.javierlete.tipos.Usuario" />
 	<h2>Bienvenido ${usuario.nombre} <a href="login?opcion=logout">Logout</a></h2>

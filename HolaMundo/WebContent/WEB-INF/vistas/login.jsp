@@ -1,5 +1,7 @@
 <%@ include file="includes/cabecera.jsp" %>
 
+	<h2>Login</h2>
+	
 	<jsp:useBean id="usuario" scope="request"
 		class="com.ipartek.ejemplos.javierlete.tipos.Usuario" />
 
