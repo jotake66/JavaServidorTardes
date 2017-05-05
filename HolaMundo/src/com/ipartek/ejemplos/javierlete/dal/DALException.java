@@ -2,9 +2,6 @@ package com.ipartek.ejemplos.javierlete.dal;
 
 public class DALException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7536930890973019777L;
 
 	public DALException() {
@@ -25,7 +22,6 @@ public class DALException extends RuntimeException {
 
 	public DALException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
 	}
 
 }
