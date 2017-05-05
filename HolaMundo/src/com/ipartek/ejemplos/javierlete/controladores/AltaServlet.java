@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.ejemplos.javierlete.dal.DALFactory;
+import com.ipartek.ejemplos.javierlete.dal.UsuarioYaExistenteDALException;
 import com.ipartek.ejemplos.javierlete.dal.UsuariosDAL;
 import com.ipartek.ejemplos.javierlete.tipos.Usuario;
 
@@ -57,7 +58,14 @@ public class AltaServlet extends HttpServlet {
 					usuariosDAL = DALFactory.getUsuariosDAL();
 				}
 
-				usuariosDAL.alta(usuario);
+				try {
+					usuariosDAL.alta(usuario);
+				} catch (UsuarioYaExistenteDALException de) {
+					usuario.setNombre("");
+					usuario.setErrores("El usuario ya existe. Elige otro");
+					request.setAttribute("usuario", usuario);
+				}
+
 				application.setAttribute(USUARIOS_DAL, usuariosDAL);
 			}
 		}
