@@ -42,8 +42,16 @@ public class UsuariosDALColeccion implements UsuariosDAL {
 
 	@Override
 	public Usuario[] buscarTodosLosUsuarios() {
-		return (Usuario[]) usuarios.entrySet().toArray();
-		// return usuarios.entrySet().toArray(new Usuario[0]);
+		// Usuario[] arr = new Usuario[usuarios.size()];
+		//
+		// int i = 0;
+		//
+		// for(Usuario usuario : usuarios.values())
+		// arr[i++] = usuario;
+		//
+		// return arr;
+
+		return usuarios.values().toArray(new Usuario[usuarios.size()]);
 	}
 
 }
