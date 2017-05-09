@@ -6,6 +6,7 @@
 <meta charset="UTF-8" />
 <title>Ejemplo MVC</title>
 <link rel="stylesheet" href="css/estilos.css" />
+<script src="js/funciones.js"></script>
 </head>
 <body>
 	<header>
@@ -15,7 +16,8 @@
 	<nav>
 		<ul>
 			<li><a href="login">Login</a></li>
-			<li><a href="alta">Alta</a></li>
+			<li><a href="usuarioform?op=alta">Alta</a></li>
 			<li><a href="login?opcion=logout">Salir</a></li>
+			<li><a href="usuariocrud">Mantenimiento usuarios</a></li>
 		</ul>
 	</nav>

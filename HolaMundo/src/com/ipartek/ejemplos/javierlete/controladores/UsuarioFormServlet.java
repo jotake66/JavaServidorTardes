@@ -23,7 +23,8 @@ public class UsuarioFormServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String op = request.getParameter("op");
+		String op = request.getParameter("opform");
+
 		String nombre = request.getParameter("nombre");
 		String pass = request.getParameter("pass");
 		String pass2 = request.getParameter("pass2");
@@ -52,21 +53,23 @@ public class UsuarioFormServlet extends HttpServlet {
 		case "alta":
 			if (pass.equals(pass2)) {
 				dal.alta(usuario);
-				request.getParameterMap().remove("op");
 				rutaListado.forward(request, response);
 			} else {
 				usuario.setErrores("Las contraseñas no coinciden");
 				request.setAttribute("usuario", usuario);
 				rutaFormulario.forward(request, response);
 			}
+
+			break;
 		case "modificar":
 			if (pass.equals(pass2)) {
 				try {
 					dal.modificar(usuario);
 				} catch (DALException de) {
-					usuario.setErrores("Usuario no existente");
+					usuario.setErrores(de.getMessage());
 					request.setAttribute("usuario", usuario);
 					rutaFormulario.forward(request, response);
+					return;
 				}
 				rutaListado.forward(request, response);
 			} else {
@@ -74,9 +77,13 @@ public class UsuarioFormServlet extends HttpServlet {
 				request.setAttribute("usuario", usuario);
 				rutaFormulario.forward(request, response);
 			}
+
+			break;
 		case "borrar":
 			dal.borrar(usuario);
 			rutaListado.forward(request, response);
+
+			break;
 		}
 	}
 

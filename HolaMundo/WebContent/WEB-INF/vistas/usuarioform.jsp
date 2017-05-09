@@ -15,8 +15,8 @@
 			<input id="nombre" name="nombre"
 			  required="required" minlength="4" value="${usuario.nombre}" 
 			  
-			  <c:if test="${param.op == 'modificar'}">
-			  	disabled="disabled"
+			  <c:if test="${param.op == 'modificar' or param.op == 'borrar'}">
+			  	readonly="readonly"
 			  </c:if>   
 		  	/>
 		</fieldset>
@@ -32,8 +32,14 @@
 			<input type="submit" value="${fn:toUpperCase(param.op)}" />
 			<p class="errores">${usuario.errores}</p>
 			
-			<input type="hidden" name="op" value="${param.op}" />
+			<input type="hidden" name="opform" value="${param.op}" />
 		</fieldset>
 	</form>
+	
+	<c:if test="${param.op == 'borrar'}">
+		<script>
+			document.forms[0].onsubmit = confirmarBorrado;
+		</script>
+	</c:if>
 	
 <%@ include file="includes/pie.jsp" %>

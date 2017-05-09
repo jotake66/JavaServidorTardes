@@ -16,7 +16,7 @@ import com.ipartek.ejemplos.javierlete.tipos.Usuario;
 
 @WebServlet("/alta")
 public class AltaServlet extends HttpServlet {
-	/* package */static final String USUARIOS_DAL = "usuariosDAL";
+	/* package */static final String USUARIOS_DAL = "dal";
 
 	private static final long serialVersionUID = 1L;
 
