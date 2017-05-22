@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng"
+	yahoo:count="1" yahoo:created="2017-05-18T14:58:14Z" yahoo:lang="es-ES">
+	<diagnostics>
+		<publiclyCallable>true</publiclyCallable>
+		<url execution-start-time="1" execution-stop-time="2"
+			execution-time="1"><![CDATA[http://unifiedgeo.geotech.yahoo.com:4080/geo/v1/geocode?q=Bilbao&start=0&size=1&optionalfields=woe.ancestors&minconfidence=0.0001]]></url>
+		<javascript execution-start-time="0" execution-stop-time="2"
+			execution-time="2" instructions-used="15700" table-name="geo.places"></javascript>
+		<url execution-start-time="3" execution-stop-time="13"
+			execution-time="10"><![CDATA[http://weather-ydn-yql.media.yahoo.com:4080/v3/public/weather/rss?w=754542]]></url>
+		<user-time>13</user-time>
+		<service-time>11</service-time>
+		<build-version>2.0.118</build-version>
+	</diagnostics>
+	<results>
+		<channel>
+			<yweather:units xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				distance="mi" pressure="in" speed="mph" temperature="F" />
+			<title>Yahoo! Weather - Bilbao, Basque Country, ES</title>
+			<link>http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-754542/</link>
+			<description>Yahoo! Weather for Bilbao, Basque Country, ES</description>
+			<language>en-us</language>
+			<lastBuildDate>Thu, 18 May 2017 04:58 PM CEST</lastBuildDate>
+			<ttl>60</ttl>
+			<yweather:location xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				city="Bilbao" country="Spain" region=" Basque Country" />
+			<yweather:wind xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				chill="54" direction="195" speed="7" />
+			<yweather:atmosphere xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				humidity="81" pressure="998.0" rising="0" visibility="16.1" />
+			<yweather:astronomy xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				sunrise="6:44 am" sunset="9:33 pm" />
+			<image>
+				<title>Yahoo! Weather</title>
+				<width>142</width>
+				<height>18</height>
+				<link>http://weather.yahoo.com</link>
+				<url>http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif</url>
+			</image>
+			<item>
+				<title>Conditions for Bilbao, Basque Country, ES at 04:00 PM CEST</title>
+				<geo:lat xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">43.26049</geo:lat>
+				<geo:long xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">-2.9359</geo:long>
+				<link>http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-754542/</link>
+				<pubDate>Thu, 18 May 2017 04:00 PM CEST</pubDate>
+				<yweather:condition xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="26" date="Thu, 18 May 2017 04:00 PM CEST" temp="54" text="Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="12" date="18 May 2017" day="Thu" high="60" low="46" text="Rain" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="39" date="19 May 2017" day="Fri" high="61" low="47"
+					text="Scattered Showers" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="20 May 2017" day="Sat" high="66" low="46"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="28" date="21 May 2017" day="Sun" high="82" low="46"
+					text="Mostly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="22 May 2017" day="Mon" high="71" low="62"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="23 May 2017" day="Tue" high="66" low="56"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="24 May 2017" day="Wed" high="70" low="53"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="25 May 2017" day="Thu" high="74" low="53"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="26 May 2017" day="Fri" high="80" low="51"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="27 May 2017" day="Sat" high="71" low="55"
+					text="Partly Cloudy" />
+				<description>&lt;![CDATA[&lt;img
+					src="http://l.yimg.com/a/i/us/we/52/26.gif"/&gt;
+					&lt;BR /&gt;
+					&lt;b&gt;Current Conditions:&lt;/b&gt;
+					&lt;BR /&gt;Cloudy
+					&lt;BR /&gt;
+					&lt;BR /&gt;
+					&lt;b&gt;Forecast:&lt;/b&gt;
+					&lt;BR /&gt; Thu - Rain. High: 60Low: 46
+					&lt;BR /&gt; Fri - Scattered Showers. High: 61Low: 47
+					&lt;BR /&gt; Sat - Partly Cloudy. High: 66Low: 46
+					&lt;BR /&gt; Sun - Mostly Cloudy. High: 82Low: 46
+					&lt;BR /&gt; Mon - Partly Cloudy. High: 71Low: 62
+					&lt;BR /&gt;
+					&lt;BR /&gt;
+					&lt;a
+					href="http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-754542/"&gt;Full
+					Forecast at Yahoo! Weather&lt;/a&gt;
+					&lt;BR /&gt;
+					&lt;BR /&gt;
+					(provided by &lt;a href="http://www.weather.com" &gt;The Weather
+					Channel&lt;/a&gt;)
+					&lt;BR /&gt;
+					]]&gt;</description>
+				<guid isPermaLink="false" />
+			</item>
+		</channel>
+	</results>
+</query><!-- total: 13 -->
+<!-- prod_bf1_1;paas.yql;queryyahooapiscomproductionbf1;f286c679-2c64-11e7-b972-d4ae52974741 -->

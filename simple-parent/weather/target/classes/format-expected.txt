@@ -1,0 +1,9 @@
+*********************************
+Current Weather Conditions for:
+Bilbao, Basque Country, Spain
+
+Temperature: 12C
+Condition: Cloudy
+Humidity: 81
+Wind Chill: 54
+*********************************
