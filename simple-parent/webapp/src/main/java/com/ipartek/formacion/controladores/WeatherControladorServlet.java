@@ -15,15 +15,15 @@ public class WeatherControladorServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		WeatherService ws = new WeatherService();
-		Weather w = null;
+		Weather weather = null;
 		try {
-			w = ws.retrieveWeather(request.getParameter("zip"));
+			weather = ws.retrieveWeather(request.getParameter("zip"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		request.setAttribute("w", w);
+		request.setAttribute("weather", weather);
 		request.getRequestDispatcher("/WEB-INF/weather.jsp").forward(request, response);
 	}
 
