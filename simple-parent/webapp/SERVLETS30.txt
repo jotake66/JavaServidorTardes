@@ -1,0 +1,36 @@
+SERVLETS
+
+@WebServlet("/hola")
+${objeto.propiedad}
+
+pom.xml
+
+servlet-api -> 3.0
+pom.xml
+<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>javax.servlet-api</artifactId>
+	<version>3.0.1</version>
+	<scope>provided</scope>
+</dependency>
+
+web.xml -> 3.0
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	      version="3.0">
+
+
+jetty -> compatible con 3.0 (8...) (La versión 9.x de eclipse parece que no arranca servicio)
+pom.xml
+<build>
+	<finalName>webapp</finalName>
+	<plugins>
+		<plugin>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-maven-plugin</artifactId>
+		</plugin>
+	</plugins>
+</build>
