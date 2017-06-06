@@ -21,4 +21,9 @@
   	<servlet-name>WeatherControladorServlet</servlet-name>
   	<url-pattern>/w</url-pattern>
   </servlet-mapping>
+  
+  <context-param>
+  	<param-name></param-name>
+  	<param-value></param-value>
+  </context-param>
  </web-app>
