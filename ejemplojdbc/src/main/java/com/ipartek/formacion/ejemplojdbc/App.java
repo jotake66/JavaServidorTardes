@@ -6,8 +6,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.ipartek.formacion.ejemplojdbc.dao.DAOException;
+import com.ipartek.formacion.ejemplojdbc.dao.UsuarioDAO;
+import com.ipartek.formacion.ejemplojdbc.dao.UsuarioDAOMySQL;
+import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
+
 public class App {
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public static void main(String[] args) {
+		try {
+		UsuarioDAO dao = new UsuarioDAOMySQL();
+		
+		for(Usuario u: dao.findAll())
+			System.out.println(u);
+		} catch(DAOException e) {
+			e.printStackTrace();
+			e.getCause().printStackTrace();
+		}
+	}
+	
+	public static void mainBasico(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 		String url = "jdbc:mysql://localhost/ipartek?user=root&password=";
