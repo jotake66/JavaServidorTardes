@@ -14,16 +14,28 @@ import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
 public class App {
 	public static void main(String[] args) {
 		try {
-		UsuarioDAO dao = new UsuarioDAOMySQL();
-		
-		for(Usuario u: dao.findAll())
-			System.out.println(u);
-		} catch(DAOException e) {
+			UsuarioDAO dao = new UsuarioDAOMySQL();
+
+			//for (Usuario u : dao.findAll())
+			//	System.out.println(u);
+			
+			//int id = 5;
+			//Usuario usuario = dao.findById(id);
+			
+			//System.out.println("Usuario ID:" + id + "=" + usuario);
+			
+			//Usuario usuarioInsert = new Usuario(0, 2, "Nuevo nuevez", "nuevopass", "nuevo100");
+			
+			//dao.insert(usuarioInsert);
+			
+		} catch (DAOException e) {
 			e.printStackTrace();
-			e.getCause().printStackTrace();
+			
+			//if(e.getCause() != null)
+			//	e.getCause().printStackTrace();
 		}
 	}
-	
+
 	public static void mainBasico(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 
