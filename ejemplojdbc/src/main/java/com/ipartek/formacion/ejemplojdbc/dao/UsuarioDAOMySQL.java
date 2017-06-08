@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
@@ -35,7 +36,7 @@ public class UsuarioDAOMySQL implements UsuarioDAO {
 			
 			psFindAll = con.prepareStatement(FIND_ALL);
 			psFindById = con.prepareStatement(FIND_BY_ID);
-			psInsert = con.prepareStatement(INSERT);
+			psInsert = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			psUpdate = con.prepareStatement(UPDATE);
 			psDelete = con.prepareStatement(DELETE);
 			
@@ -117,7 +118,7 @@ public class UsuarioDAOMySQL implements UsuarioDAO {
 		return usuario;
 	}
 
-	public void insert(Usuario usuario) {
+	public int insert(Usuario usuario) {
 		
 		try {
 			psInsert.setString(1, usuario.getUsername());
@@ -130,24 +131,54 @@ public class UsuarioDAOMySQL implements UsuarioDAO {
 			if(res != 1)
 				throw new DAOException("La inserción ha devuelto un valor " + res);
 			
+			ResultSet generatedKeys = psInsert.getGeneratedKeys();
+			
+			if(generatedKeys.next())
+				return generatedKeys.getInt(1);
+			else
+				throw new DAOException("No se ha recibido la clave generada");
+			
 		} catch (SQLException e) {
 			throw new DAOException("Error en insert", e);
 		}
 	}
 
 	public void update(Usuario usuario) {
-		// TODO Auto-generated method stub
-
+		try {
+			psUpdate.setString(1, usuario.getUsername());
+			psUpdate.setString(2, usuario.getPassword());
+			psUpdate.setString(3, usuario.getNombre_completo());
+			psUpdate.setInt(4, usuario.getId_roles());
+			
+			psUpdate.setInt(5, usuario.getId());
+			
+			int res = psUpdate.executeUpdate();
+			
+			if(res != 1)
+				throw new DAOException("La actualización ha devuelto un valor " + res);
+			
+		} catch(SQLException e) {
+			throw new DAOException("Error en update", e);
+		}
 	}
 
 	public void delete(Usuario usuario) {
-		// TODO Auto-generated method stub
-
+		delete(usuario.getId());
 	}
 
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		try {
+			psDelete.setInt(1, id);
+			
+			int res = psDelete.executeUpdate();
+			
+			if(res != 1)
+				throw new DAOException("La actualización ha devuelto un valor " + res);
+			
+		} catch (SQLException e) {
+			throw new DAOException("Error en update", e);
+		}
+		
 	}
 
 }
