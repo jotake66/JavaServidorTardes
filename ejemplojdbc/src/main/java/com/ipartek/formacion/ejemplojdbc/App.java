@@ -18,38 +18,35 @@ public class App {
 		try {
 			dao = new UsuarioDAOMySQL();
 
+			dao.abrir();
+			
 			listado();
 			
 			Usuario usuario = new Usuario(0, 2, "Nuevo nuevez", "nuevopass", "nuevo100");
 			
 			int id = dao.insert(usuario);
-			
 			System.out.println("Se ha insertado un nuevo registro con el id " + id);
 			
 			usuario = dao.findById(id);
-			
 			System.out.println("Usuario ID:" + id + "=" + usuario);
 			
 			listado();
 			
 			usuario.setNombre_completo("MODIFICADO");
-			
 			dao.update(usuario);
-			
 			System.out.println("Se ha modificado el registro " + id);
 			
 			listado();
 			
 			dao.delete(usuario);
-			
 			System.out.println("Se ha borrado el registro " + id);
 			
 			listado();
+			
 		} catch (DAOException e) {
 			e.printStackTrace();
-			
-			//if(e.getCause() != null)
-			//	e.getCause().printStackTrace();
+		} finally {
+			dao.cerrar();
 		}
 	}
 
