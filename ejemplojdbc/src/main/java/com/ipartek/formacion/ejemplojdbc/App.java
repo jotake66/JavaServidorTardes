@@ -14,9 +14,44 @@ import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
 public class App {
 	public static UsuarioDAO dao = null;
 	
+	public static void mainTransacciones(String[] args){
+		try {
+			dao = new UsuarioDAOMySQL(); //"jdbc:mysql://localhost/ipartek", "javierlete", "javipass");
+			
+			dao.abrir();
+			
+			dao.iniciarTransaccion();
+			
+			Usuario usuario;
+			
+			for(int i = 100; i < 200; i++)
+			{
+				usuario = new Usuario();
+				usuario.setUsername("usuario" + i);
+				usuario.setPassword("usuario" + i + "pass");
+				usuario.setNombre_completo("Usuario" + i + " Usuariez");
+				usuario.setId_roles(2);
+				
+				//if(i > 150)
+				//	throw new RuntimeException("CASQUE ACCIDENTAL");
+				//else
+					dao.insert(usuario);
+			}
+			
+			dao.confirmarTransaccion();
+			
+		} catch (Exception e) {
+			dao.deshacerTransaccion();
+			System.out.println("HA CASCADO");
+			e.printStackTrace();
+		} finally {
+			dao.cerrar();
+		}
+	}
+	
 	public static void main(String[] args) {
 		try {
-			dao = new UsuarioDAOMySQL("jdbc:mysql://localhost/ipartek", "javierlete", "javipass");
+			dao = new UsuarioDAOMySQL("jdbc:mysql://localhost/ipartek", "javier", "javipass");
 
 			dao.abrir();
 			

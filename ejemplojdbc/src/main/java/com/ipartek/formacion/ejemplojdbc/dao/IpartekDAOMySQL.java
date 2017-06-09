@@ -55,5 +55,31 @@ public class IpartekDAOMySQL implements IpartekDAO {
 			throw new DAOException("ERROR NO ESPERADO", e);
 		}
 	}
+
+	public void iniciarTransaccion() {
+		try {
+			con.setAutoCommit(false);
+		} catch (SQLException e) {
+			throw new DAOException("Error al desactivar AutoCommit", e);
+		}
+	}
+
+	public void confirmarTransaccion() {
+		try {
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			throw new DAOException("Error al confirmar transacción", e);
+		}
+	}
+
+	public void deshacerTransaccion() {
+		try {
+			con.rollback();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			throw new DAOException("Error al deshacer transacción", e);
+		}
+	}
 	
 }
