@@ -1,6 +1,8 @@
 package com.ipartek.formacion.ejemplojdbc.tipos;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Factura {
 	// Constructores, getters y setters, hashCode y equals y toString
@@ -8,6 +10,8 @@ public class Factura {
 	private String número_factura;
 	private int id_usuarios;
 	private Date fecha;
+	
+	private List<FacturaLinea> lineas = new ArrayList<FacturaLinea>();
 
 	public Factura(int id, String número_factura, int id_usuarios, Date fecha) {
 		super();
@@ -18,7 +22,7 @@ public class Factura {
 	}
 
 	public Factura() {
-		System.out.println("CONSTRUCTOR FACTURA  VACIO");
+		
 	}
 
 	public int getId() {
@@ -53,6 +57,14 @@ public class Factura {
 		this.fecha = fecha;
 	}
 
+	public void addProductoYCantidad(Producto producto, int cantidad){
+		lineas.add(new FacturaLinea(producto, cantidad));
+	}
+	
+	public FacturaLinea[] getLineas(){
+		return lineas.toArray(new FacturaLinea[lineas.size()]);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,7 +105,8 @@ public class Factura {
 	@Override
 	public String toString() {
 		return "Factura [id=" + id + ", número_factura=" + número_factura + ", id_usuarios=" + id_usuarios + ", fecha="
-				+ fecha + "]";
+				+ fecha + "\n" + lineas.toString() + "]";
 	}
 
+	
 }

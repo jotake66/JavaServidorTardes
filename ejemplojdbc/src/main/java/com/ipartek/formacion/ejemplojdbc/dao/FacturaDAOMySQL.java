@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ipartek.formacion.ejemplojdbc.tipos.Factura;
+import com.ipartek.formacion.ejemplojdbc.tipos.FacturaLinea;
+import com.ipartek.formacion.ejemplojdbc.tipos.Producto;
 
 public class FacturaDAOMySQL extends IpartekDAOMySQL implements FacturaDAO {
 	private final static String FIND_ALL = "SELECT * FROM facturas";
@@ -17,7 +19,9 @@ public class FacturaDAOMySQL extends IpartekDAOMySQL implements FacturaDAO {
 			+ "WHERE id = ?";
 	private final static String DELETE = "DELETE FROM facturas WHERE id = ?";
 
-	private PreparedStatement psFindAll, psFindById, psInsert, psUpdate, psDelete;
+	private final static String FIND_ALL_LINEAS = "SELECT * FROM facturas_productos WHERE id_facturas = ?";
+	
+	private PreparedStatement psFindAll, psFindById, psInsert, psUpdate, psDelete, psFindAllLineas;
 
 	public Factura[] findAll() {
 		ArrayList<Factura> facturas = new ArrayList<Factura>();
@@ -166,5 +170,56 @@ public class FacturaDAOMySQL extends IpartekDAOMySQL implements FacturaDAO {
 		} catch (Exception e) {
 			throw new DAOException("Error en el cierre de ps o rs", e);
 		}
+	}
+
+	public void insertLinea(FacturaLinea linea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteLinea(Producto producto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateLinea(FacturaLinea linea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void findLineaByProductoId(int idFactura, int idProducto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public FacturaLinea[] findAllLineas(int idFactura) {
+		ArrayList<FacturaLinea> lineas = new ArrayList<FacturaLinea>();
+		
+		try {
+			psFindAllLineas = con.prepareStatement(FIND_ALL_LINEAS);
+			
+			psFindAllLineas.setInt(1, idFactura);
+			
+			ResultSet rs = psFindAllLineas.executeQuery();
+			
+			ProductoDAO dao = new ProductoDAOMySQL();
+			dao.reutilizarConexion(this);
+			
+			while(rs.next()){
+				lineas.add(new FacturaLinea(dao.findById(rs.getInt("id_productos")), rs.getInt("cantidad")));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lineas.toArray(new FacturaLinea[lineas.size()]);
+	}
+
+	public Factura findByIdFacturaCompleta(int id) {
+		Factura factura = findById(id);
+		for(FacturaLinea fl: findAllLineas(factura.getId())){
+			factura.addProductoYCantidad(fl.getProducto(), fl.getCantidad());
+		}
+		return factura;
 	}
 }

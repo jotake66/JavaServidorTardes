@@ -81,5 +81,9 @@ public class IpartekDAOMySQL implements IpartekDAO {
 			throw new DAOException("Error al deshacer transacción", e);
 		}
 	}
+
+	public void reutilizarConexion(IpartekDAO dao) {
+		con = ((IpartekDAOMySQL)dao).con;
+	}
 	
 }

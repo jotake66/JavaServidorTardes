@@ -7,12 +7,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.ipartek.formacion.ejemplojdbc.dao.DAOException;
+import com.ipartek.formacion.ejemplojdbc.dao.FacturaDAO;
+import com.ipartek.formacion.ejemplojdbc.dao.FacturaDAOMySQL;
 import com.ipartek.formacion.ejemplojdbc.dao.UsuarioDAO;
 import com.ipartek.formacion.ejemplojdbc.dao.UsuarioDAOMySQL;
+import com.ipartek.formacion.ejemplojdbc.tipos.Factura;
+import com.ipartek.formacion.ejemplojdbc.tipos.FacturaLinea;
 import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
 
 public class App {
-	
+	public static void main(String[] args){
+		try {
+			FacturaDAO dao = new FacturaDAOMySQL();
+			
+			dao.abrir();
+			
+			for(Factura f: dao.findAll()){
+				for(FacturaLinea fl: dao.findAllLineas(f.getId())){
+					System.out.println("" + fl.getCantidad() + ", " + fl.getProducto());
+				}
+			}
+						
+			Factura factura = dao.findByIdFacturaCompleta(1);
+			
+			System.out.println(factura);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public static UsuarioDAO dao = null;
 	

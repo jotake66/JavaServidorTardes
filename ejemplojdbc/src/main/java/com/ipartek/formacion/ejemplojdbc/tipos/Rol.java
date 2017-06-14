@@ -14,7 +14,7 @@ public class Rol {
 	}
 
 	public Rol() {
-		System.out.println("CONSTRUCTOR ROL VACIO");
+		
 	}
 
 	public int getId() {
