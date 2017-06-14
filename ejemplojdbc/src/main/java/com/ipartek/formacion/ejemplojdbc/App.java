@@ -12,6 +12,8 @@ import com.ipartek.formacion.ejemplojdbc.dao.UsuarioDAOMySQL;
 import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
 
 public class App {
+	
+	
 	public static UsuarioDAO dao = null;
 	
 	public static void mainTransacciones(String[] args){
@@ -49,7 +51,7 @@ public class App {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void mainDAOUsuario(String[] args) {
 		try {
 			dao = new UsuarioDAOMySQL("jdbc:mysql://localhost/ipartek", "javier", "javipass");
 
