@@ -1,5 +1,6 @@
 package com.ipartek.formacion.ejemplojdbc;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +17,23 @@ import com.ipartek.formacion.ejemplojdbc.tipos.FacturaLinea;
 import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
 
 public class App {
-	public static void main(String[] args){
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+		String url = "jdbc:mysql://localhost/ipartek?user=root&password=";
+
+		Connection con = DriverManager.getConnection(url);
+		
+		CallableStatement spSelect = con.prepareCall("{call sp_sel_productos()}");
+
+		
+		ResultSet rs = spSelect.executeQuery();
+		
+		while(rs.next()){
+			System.out.println(rs.getString("nombre"));
+		}
+	}
+	public static void mainDAOFactura(String[] args){
 		try {
 			FacturaDAO dao = new FacturaDAOMySQL();
 			
