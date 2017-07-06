@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.ipartek.formacion.ejemplojdbc.dao.DAOException;
 import com.ipartek.formacion.ejemplojdbc.dao.FacturaDAO;
@@ -17,7 +18,20 @@ import com.ipartek.formacion.ejemplojdbc.tipos.FacturaLinea;
 import com.ipartek.formacion.ejemplojdbc.tipos.Usuario;
 
 public class App {
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+	public static void main(String[] args) throws ClassNotFoundException, SQLException{
+		final String fileName = "C:\\JAVA\\ACCESS\\Ejemplo.accdb";
+		Connection con = null;
+	    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); //En JAVA 8 YA NO EXISTE
+	    String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="+fileName;
+	    con = DriverManager.getConnection(url,"","");
+	    Statement st = con.createStatement();
+	    ResultSet rs = st.executeQuery("SELECT * FROM usuarios");
+	    while(rs.next())
+	    	System.out.println(rs.getString(1));
+	    
+	}
+	
+	public static void callableMain(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 		String url = "jdbc:mysql://localhost/ipartek?user=root&password=";
