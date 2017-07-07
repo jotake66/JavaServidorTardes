@@ -13,14 +13,21 @@ import javax.crypto.spec.SecretKeySpec;
 public class Encriptacion {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-		String Key = "Encriptacion";
+		String Key = "1234567890123456";
 		byte[] KeyData = Key.getBytes();
+		
+		for(int i = 0; i < KeyData.length; i++)
+			System.out.println(KeyData[i]);
+		
 		SecretKeySpec KS = new SecretKeySpec(KeyData, "Blowfish");
 		Cipher cipher = Cipher.getInstance("Blowfish");
 		cipher.init(Cipher.ENCRYPT_MODE, KS);
+		
+		//Falta Salt
 		String inputText = "Contraseña";
 		byte[] encrypted = cipher.doFinal(inputText.getBytes());
-		System.out.println(Base64.getMimeEncoder().encodeToString(encrypted));
+		System.out.println(encrypted.length);
+		System.out.println(
+				Base64.getMimeEncoder().encodeToString(encrypted));
 	}
-
 }
